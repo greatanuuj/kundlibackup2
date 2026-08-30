@@ -31,9 +31,11 @@ const EXAMPLES: BirthInput[] = [
 export function BirthForm({
   onSubmit,
   initial,
+  heading = "Enter Birth Details",
 }: {
   onSubmit: (input: BirthInput) => void;
   initial?: BirthInput | null;
+  heading?: string;
 }) {
   const [name, setName] = useState(initial?.name ?? "");
   const [gender, setGender] = useState(initial?.gender ?? "Male");
@@ -77,7 +79,7 @@ export function BirthForm({
 
   return (
     <div className="panel p-6 sm:p-8">
-      <h2 className="text-2xl font-semibold text-primary">Enter Birth Details</h2>
+      <h2 className="text-2xl font-semibold text-primary">{heading}</h2>
       <p className="mt-1 text-sm text-muted-foreground">
         जन्म विवरण भरें — accurate time gives an accurate Lagna and Dasha.
       </p>

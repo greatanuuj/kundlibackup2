@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { BirthForm } from "@/components/kundli/BirthForm";
 import { ChartDiagram } from "@/components/kundli/ChartDiagram";
@@ -9,6 +9,7 @@ import { DashaPanel } from "@/components/kundli/DashaPanel";
 import { YogaDoshaPanel } from "@/components/kundli/YogaDoshaPanel";
 import { RemediesPanel } from "@/components/kundli/RemediesPanel";
 import { DivisionalPanel } from "@/components/kundli/DivisionalPanel";
+import { TransitPanel } from "@/components/kundli/TransitPanel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { computeKundli, type BirthInput, type Kundli } from "@/lib/astro/kundli";
@@ -52,6 +53,14 @@ function Home() {
           Sidereal Vedic birth chart with real astronomical calculations — Lagna, grahas, nakshatras,
           divisional charts, Vimshottari dasha, yogas, doshas and traditional remedies.
         </p>
+        <div className="mt-4">
+          <Link
+            to="/matching"
+            className="text-sm text-primary underline-offset-4 hover:underline"
+          >
+            Kundli Milan — 36 guna matching →
+          </Link>
+        </div>
       </header>
 
       {!kundli && (
@@ -101,6 +110,7 @@ function Home() {
               <TabsTrigger value="houses">Bhavas</TabsTrigger>
               <TabsTrigger value="divisional">Divisional</TabsTrigger>
               <TabsTrigger value="dasha">Dasha</TabsTrigger>
+              <TabsTrigger value="gochar">Gochar</TabsTrigger>
               <TabsTrigger value="yoga">Yoga &amp; Dosha</TabsTrigger>
               <TabsTrigger value="remedies">Remedies</TabsTrigger>
               <TabsTrigger value="panchang">Panchang</TabsTrigger>
@@ -183,6 +193,9 @@ function Home() {
             </TabsContent>
             <TabsContent value="dasha" className="mt-6">
               <DashaPanel k={kundli} />
+            </TabsContent>
+            <TabsContent value="gochar" className="mt-6">
+              <TransitPanel k={kundli} />
             </TabsContent>
             <TabsContent value="yoga" className="mt-6">
               <YogaDoshaPanel k={kundli} />

@@ -404,10 +404,11 @@ export function computeKundli(input: BirthInput): Kundli {
 }
 
 export function formatDegree(deg: number): string {
-  const d = Math.floor(deg);
-  const mFull = (deg - d) * 60;
-  const m = Math.floor(mFull);
-  const s = Math.round((mFull - m) * 60);
+  let total = Math.round(deg * 3600);
+  const d = Math.floor(total / 3600);
+  total -= d * 3600;
+  const m = Math.floor(total / 60);
+  const s = total - m * 60;
   return `${d}° ${String(m).padStart(2, "0")}' ${String(s).padStart(2, "0")}"`;
 }
 
