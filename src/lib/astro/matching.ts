@@ -217,7 +217,7 @@ export function matchKundlis(boy: Kundli, girl: Kundli): MatchResult {
         ? "Both charts carry Mangal dosha — it cancels mutually, which is considered favourable."
         : boyM || girlM
           ? `Only the ${boyM ? "groom" : "bride"}'s chart carries Mangal dosha — Mangal shanti, Hanuman Chalisa and Tuesday fasting are advised before marriage.`
-          : "Neither chart carries Mangal dosha.";
+          : "Neither chart carries Mangal dosha.",
   };
 
   const notes: string[] = [];
