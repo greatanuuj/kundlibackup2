@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { BirthForm } from "@/components/kundli/BirthForm";
 import { ChartDiagram } from "@/components/kundli/ChartDiagram";
 import { SummaryCards } from "@/components/kundli/SummaryCards";
+import { ReportPanel } from "@/components/kundli/ReportPanel";
 import { PlanetsPanel } from "@/components/kundli/PlanetsPanel";
 import { HousesPanel } from "@/components/kundli/HousesPanel";
 import { DashaPanel } from "@/components/kundli/DashaPanel";
@@ -103,8 +104,9 @@ function Home() {
 
           <SummaryCards k={kundli} />
 
-          <Tabs defaultValue="chart">
+          <Tabs defaultValue="report">
             <TabsList className="flex h-auto flex-wrap justify-start gap-1">
+              <TabsTrigger value="report">Report</TabsTrigger>
               <TabsTrigger value="chart">Chart</TabsTrigger>
               <TabsTrigger value="planets">Grahas</TabsTrigger>
               <TabsTrigger value="houses">Bhavas</TabsTrigger>
@@ -115,6 +117,10 @@ function Home() {
               <TabsTrigger value="remedies">Remedies</TabsTrigger>
               <TabsTrigger value="panchang">Panchang</TabsTrigger>
             </TabsList>
+
+            <TabsContent value="report" className="mt-6">
+              <ReportPanel k={kundli} />
+            </TabsContent>
 
             <TabsContent value="chart" className="mt-6">
               <div className="grid gap-6 lg:grid-cols-2">
