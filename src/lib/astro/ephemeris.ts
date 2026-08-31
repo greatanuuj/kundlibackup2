@@ -275,7 +275,7 @@ export function ascendantLongitude(jd: number, latitude: number, longitude: numb
   const lst = norm360(gmst(jd) + longitude);
   const eps = obliquity(jd);
   const asc =
-    Math.atan2(-cos(lst), sin(lst) * cos(eps) + Math.tan(latitude * DEG) * sin(eps)) / DEG;
+    Math.atan2(cos(lst), -(sin(lst) * cos(eps) + Math.tan(latitude * DEG) * sin(eps))) / DEG;
   return norm360(asc);
 }
 
