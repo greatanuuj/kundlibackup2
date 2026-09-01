@@ -308,7 +308,7 @@ export function buildReport(k: Kundli): ReportSection[] {
     lines: [
       `Sabse balwaan graha: ${strongest.key} (${Math.round(strongest.strength)}/100) — ${signOf(strongest.sign)}, ${strongest.house} bhava. Yeh aapki sabse badi shakti hai, iske dasha-antar mein sabse achhe result milte hain.`,
       `Sabse kamzor graha: ${weakest.key} (${Math.round(weakest.strength)}/100) — iske liye upay karna chahiye (${PLANET_META[weakest.key].mantra ?? "mantra jap"}).`,
-      `Tatva santulan — Agni ${balance.Fire}, Prithvi ${balance.Earth}, Vayu ${balance.Air}, Jal ${balance.Water}. ${
+      `Tatva santulan — Agni ${balance['Fire']}, Prithvi ${balance['Earth']}, Vayu ${balance['Air']}, Jal ${balance['Water']}. ${
         Math.max(...Object.values(balance)) >= 4
           ? "Ek tatva ki adhikta hai, isliye swabhav mein wahi rang haavi rahega."
           : "Tatva kaafi santulit hain — swabhav mein lachilapan rahega."
