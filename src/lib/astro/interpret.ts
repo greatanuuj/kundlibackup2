@@ -81,7 +81,7 @@ export const SIGN_TRAITS: Record<
   },
 };
 
-const HOUSE_EFFECT: Record<PlanetKey, string[]> = {
+export const HOUSE_EFFECT: Record<PlanetKey, string[]> = {
   Sun: [
     "Strong personality aur self-respect; leadership natural aata hai, par ego par control zaroori.",
     "Family aur dhan ke saath pita ka jud; speech authoritative, eye/dant ka dhyan rakhein.",
