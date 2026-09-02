@@ -16,7 +16,7 @@ import { HouseDetail } from "@/components/kundli/HouseDetail";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { computeKundli, type BirthInput, type Kundli } from "@/lib/astro/kundli";
-import { HOUSES, NAKSHATRAS, SIGNS } from "@/lib/astro/data";
+import { NAKSHATRAS, SIGNS } from "@/lib/astro/data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -116,6 +116,7 @@ function Home() {
               <TabsTrigger value="dasha">Dasha</TabsTrigger>
               <TabsTrigger value="gochar">Gochar</TabsTrigger>
               <TabsTrigger value="yoga">Yoga &amp; Dosha</TabsTrigger>
+              <TabsTrigger value="lalkitab">Lal Kitab</TabsTrigger>
               <TabsTrigger value="remedies">Remedies</TabsTrigger>
               <TabsTrigger value="panchang">Panchang</TabsTrigger>
             </TabsList>
@@ -195,6 +196,9 @@ function Home() {
             </TabsContent>
             <TabsContent value="yoga" className="mt-6">
               <YogaDoshaPanel k={kundli} />
+            </TabsContent>
+            <TabsContent value="lalkitab" className="mt-6">
+              <LalKitabPanel k={kundli} />
             </TabsContent>
             <TabsContent value="remedies" className="mt-6">
               <RemediesPanel k={kundli} />
