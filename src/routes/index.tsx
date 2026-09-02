@@ -11,6 +11,8 @@ import { YogaDoshaPanel } from "@/components/kundli/YogaDoshaPanel";
 import { RemediesPanel } from "@/components/kundli/RemediesPanel";
 import { DivisionalPanel } from "@/components/kundli/DivisionalPanel";
 import { TransitPanel } from "@/components/kundli/TransitPanel";
+import { LalKitabPanel } from "@/components/kundli/LalKitabPanel";
+import { HouseDetail } from "@/components/kundli/HouseDetail";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { computeKundli, type BirthInput, type Kundli } from "@/lib/astro/kundli";
