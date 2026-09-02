@@ -134,7 +134,7 @@ function Home() {
                     retro: p.retrograde,
                   }))}
                   title="Rashi Chakra (D-1)"
-                  subtitle="North Indian style — click a house for its meaning"
+                  subtitle="North Indian style — kisi bhi ghar par click karein, poora vishleshan milega"
                   onHouseClick={(h) => setHouse(h === house ? null : h)}
                   activeHouse={house}
                 />
