@@ -138,27 +138,15 @@ function Home() {
                   onHouseClick={(h) => setHouse(h === house ? null : h)}
                   activeHouse={house}
                 />
-                <div className="panel p-5">
-                  <h3 className="text-lg font-semibold text-primary">
-                    {house ? `House ${house} — ${HOUSES[house - 1].title}` : "Chart summary"}
-                  </h3>
-                  {house ? (
-                    <div className="mt-3 space-y-2 text-sm">
-                      <p className="font-devanagari text-muted-foreground">{HOUSES[house - 1].hi}</p>
-                      <p>{HOUSES[house - 1].areas}</p>
-                      <p>
-                        <span className="text-muted-foreground">Sign: </span>
-                        {SIGNS[(kundli.ascendant.sign + house - 1) % 12].en} · lord{" "}
-                        {kundli.houseLords[house - 1].lord} in house{" "}
-                        {kundli.houseLords[house - 1].lordHouse}
-                      </p>
-                      <p>
-                        <span className="text-muted-foreground">Planets here: </span>
-                        {kundli.planets.filter((p) => p.house === house).map((p) => p.key).join(", ") ||
-                          "none"}
-                      </p>
-                    </div>
-                  ) : (
+                {house ? (
+                  <HouseDetail k={kundli} house={house} />
+                ) : (
+                  <div className="panel p-5">
+                    <h3 className="text-lg font-semibold text-primary">Chart summary</h3>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      Chart mein kisi bhi ghar par click karein — us ghar ka kaam, uske grah, drishti,
+                      dasha aur baaki tables se connection sab detail mein khulega.
+                    </p>
                     <ul className="mt-3 space-y-2 text-sm">
                       <li>
                         <span className="text-muted-foreground">Lagna: </span>
@@ -185,8 +173,8 @@ function Home() {
                         {kundli.doshas.filter((d) => d.present).map((d) => d.name).join(", ") || "none"}
                       </li>
                     </ul>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </TabsContent>
 
