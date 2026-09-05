@@ -12,6 +12,8 @@ import { RemediesPanel } from "@/components/kundli/RemediesPanel";
 import { DivisionalPanel } from "@/components/kundli/DivisionalPanel";
 import { TransitPanel } from "@/components/kundli/TransitPanel";
 import { LalKitabPanel } from "@/components/kundli/LalKitabPanel";
+import { NumerologyPanel } from "@/components/kundli/NumerologyPanel";
+
 import { HouseDetail } from "@/components/kundli/HouseDetail";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
