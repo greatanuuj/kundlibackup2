@@ -202,6 +202,17 @@ function Home() {
             <TabsContent value="lalkitab" className="mt-6">
               <LalKitabPanel k={kundli} />
             </TabsContent>
+            <TabsContent value="numerology" className="mt-6">
+              <NumerologyPanel
+                person={{
+                  name: kundli.input.name,
+                  gender: kundli.input.gender,
+                  date: kundli.input.date,
+                }}
+                k={kundli}
+              />
+            </TabsContent>
+
             <TabsContent value="remedies" className="mt-6">
               <RemediesPanel k={kundli} />
             </TabsContent>
