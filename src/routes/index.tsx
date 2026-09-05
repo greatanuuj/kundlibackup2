@@ -12,6 +12,8 @@ import { RemediesPanel } from "@/components/kundli/RemediesPanel";
 import { DivisionalPanel } from "@/components/kundli/DivisionalPanel";
 import { TransitPanel } from "@/components/kundli/TransitPanel";
 import { LalKitabPanel } from "@/components/kundli/LalKitabPanel";
+import { NumerologyPanel } from "@/components/kundli/NumerologyPanel";
+
 import { HouseDetail } from "@/components/kundli/HouseDetail";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -117,6 +119,8 @@ function Home() {
               <TabsTrigger value="gochar">Gochar</TabsTrigger>
               <TabsTrigger value="yoga">Yoga &amp; Dosha</TabsTrigger>
               <TabsTrigger value="lalkitab">Lal Kitab</TabsTrigger>
+              <TabsTrigger value="numerology">Numerology</TabsTrigger>
+
               <TabsTrigger value="remedies">Remedies</TabsTrigger>
               <TabsTrigger value="panchang">Panchang</TabsTrigger>
             </TabsList>
@@ -200,6 +204,17 @@ function Home() {
             <TabsContent value="lalkitab" className="mt-6">
               <LalKitabPanel k={kundli} />
             </TabsContent>
+            <TabsContent value="numerology" className="mt-6">
+              <NumerologyPanel
+                person={{
+                  name: kundli.input.name,
+                  gender: kundli.input.gender,
+                  date: kundli.input.date,
+                }}
+                k={kundli}
+              />
+            </TabsContent>
+
             <TabsContent value="remedies" className="mt-6">
               <RemediesPanel k={kundli} />
             </TabsContent>

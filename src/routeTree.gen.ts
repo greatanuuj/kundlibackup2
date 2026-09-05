@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MatchingRouteImport } from './routes/matching'
+import { Route as NumerologyRouteImport } from './routes/numerology'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const MatchingRoute = MatchingRouteImport.update({
   path: '/matching',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NumerologyRoute = NumerologyRouteImport.update({
+  id: '/numerology',
+  path: '/numerology',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/matching': typeof MatchingRoute
+  '/numerology': typeof NumerologyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/matching': typeof MatchingRoute
+  '/numerology': typeof NumerologyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/matching': typeof MatchingRoute
+  '/numerology': typeof NumerologyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/matching'
+  fullPaths: '/' | '/matching' | '/numerology'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/matching'
-  id: '__root__' | '/' | '/matching'
+  to: '/' | '/matching' | '/numerology'
+  id: '__root__' | '/' | '/matching' | '/numerology'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MatchingRoute: typeof MatchingRoute
+  NumerologyRoute: typeof NumerologyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MatchingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/numerology': {
+      id: '/numerology'
+      path: '/numerology'
+      fullPath: '/numerology'
+      preLoaderRoute: typeof NumerologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MatchingRoute: MatchingRoute,
+  NumerologyRoute: NumerologyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
