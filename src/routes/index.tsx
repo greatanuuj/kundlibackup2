@@ -117,6 +117,8 @@ function Home() {
               <TabsTrigger value="gochar">Gochar</TabsTrigger>
               <TabsTrigger value="yoga">Yoga &amp; Dosha</TabsTrigger>
               <TabsTrigger value="lalkitab">Lal Kitab</TabsTrigger>
+              <TabsTrigger value="numerology">Numerology</TabsTrigger>
+
               <TabsTrigger value="remedies">Remedies</TabsTrigger>
               <TabsTrigger value="panchang">Panchang</TabsTrigger>
             </TabsList>
