@@ -485,7 +485,7 @@ export function buildNumerology(input: NumerologyInput, today = new Date()): Num
       ch.count === 0
         ? "Naam nahi diya gaya, isliye Namank nahi nikala ja saka."
         : `Chaldean paddhati me har akshar ki dhwani ka ek ank hota hai (8 kabhi assign nahi hota kyunki wo Saturn ka bhaari ank hai). ` +
-          `"${input.name}" ke akshar: ${ch.parts.join(", ")}. Kul = ${ch.total}, phir ${reduceChain(ch.total)} = ${namankN}. ` +
+          `"${input.name}" ke akshar: ${ch.parts.join(", ")}. Kul = ${ch.total}, phir ${reduceChain(ch.total)}. ` +
           `Namank wo hai jo duniya aapke naam sunkar mehsoos karti hai — isi se yash, business aur brand chalta hai.`,
     meaning: NUM_TRAITS[namankN].core,
     strengths: NUM_TRAITS[namankN].strengths,
@@ -502,7 +502,7 @@ export function buildNumerology(input: NumerologyInput, today = new Date()): Num
     planet: NUM_PLANET[pyBase].en,
     reason:
       `Pythagorean paddhati me A=1, B=2 ... I=9 aur phir dobara 1 se. ` +
-      `"${input.name}" ka kul = ${py.total}, ${reduceChain(py.total, true)} = ${pyN}. ` +
+      `"${input.name}" ka kul = ${py.total}, ${reduceChain(py.total, true)}. ` +
       `Expression Number batata hai ki aapki pratibha kis roop me bahar aati hai — kaam, kala ya bhasha me.`,
     meaning: (NUM_TRAITS[pyN] ?? NUM_TRAITS[pyBase]).core,
   };
@@ -516,7 +516,7 @@ export function buildNumerology(input: NumerologyInput, today = new Date()): Num
       sv.count === 0
         ? "Naam me swar (vowels) nahi mile."
         : `Sirf swar (A, E, I, O, U) ginte hain kyunki swar bina rok-tok nikalti dhwani hain — wahi aatma ki aawaz maani jaati hai. ` +
-          `${sv.parts.join(", ")} → ${sv.total} → ${reduceChain(sv.total, true)} = ${svN}. ` +
+          `${sv.parts.join(", ")} → ${sv.total} → ${reduceChain(sv.total, true)}. ` +
           `Yeh wo cheez hai jo aap chupke se chahte hain, bhale duniya ko na bataayein.`,
     meaning: (NUM_TRAITS[svN] ?? NUM_TRAITS[reduce(sv.total || 1)]).core,
   };
@@ -530,7 +530,7 @@ export function buildNumerology(input: NumerologyInput, today = new Date()): Num
       cons.count === 0
         ? "Naam me vyanjan nahi mile."
         : `Sirf vyanjan (consonants) — kyunki vyanjan dhwani ko aakar dete hain, jaise aapka bahri vyavhaar aapko. ` +
-          `${cons.parts.join(", ")} → ${cons.total} → ${reduceChain(cons.total, true)} = ${consN}. ` +
+          `${cons.parts.join(", ")} → ${cons.total} → ${reduceChain(cons.total, true)}. ` +
           `Yeh wo pehla impression hai jo log aapse milte hi banate hain.`,
     meaning: (NUM_TRAITS[consN] ?? NUM_TRAITS[reduce(cons.total || 1)]).core,
   };
@@ -540,7 +540,7 @@ export function buildNumerology(input: NumerologyInput, today = new Date()): Num
     label: "Maturity Number (Paripakvta Ank)",
     value: matN,
     reason:
-      `Bhagyank (${bhagyankBase}) + Expression (${pyBase}) = ${bhagyankBase + pyBase} → ${reduceChain(bhagyankBase + pyBase, true)} = ${matN}. ` +
+      `Bhagyank (${bhagyankBase}) + Expression (${pyBase}) = ${bhagyankBase + pyBase} → ${reduceChain(bhagyankBase + pyBase, true)}. ` +
       `Yeh ank lagbhag 35-40 saal ki umar ke baad khulta hai — jab jeevan ka path aur aapki pratibha ek ho jaate hain. ` +
       `Isse pata chalta hai ki aap "ban kar" kya honge.`,
     meaning: (NUM_TRAITS[matN] ?? NUM_TRAITS[reduce(matN)]).core,
@@ -578,7 +578,7 @@ export function buildNumerology(input: NumerologyInput, today = new Date()): Num
     label: "Kua Number (Vastu Disha Ank)",
     value: kuaN,
     reason:
-      `Janm varsh ${y} ke ank jode: ${reduceChain(y)} = ${yearSum}. ` +
+      `Janm varsh ${y} ke ank jode: ${reduceChain(y)}. ` +
       (female
         ? `Mahila ke liye niyam: ${yearSum} + ${after2000 ? 6 : 4} → Kua = ${kuaN}.`
         : `Purush ke liye niyam: ${after2000 ? 9 : 11} − ${yearSum} → Kua = ${kuaN}.`) +
@@ -768,7 +768,7 @@ export function buildNumerology(input: NumerologyInput, today = new Date()): Num
       value: pYearN,
       planet: NUM_PLANET[pYearN].en,
       reason:
-        `Janm din (${reduce(d)}) + janm maah (${reduce(m)}) + chalu varsh (${reduceChain(pyYear)} = ${reduce(pyYear)}) ` +
+        `Janm din (${reduce(d)}) + janm maah (${reduce(m)}) + chalu varsh (${reduceChain(pyYear)}) ` +
         `= ${reduce(d) + reduce(m) + reduce(pyYear)} → ${pYearN}. ` +
         `Personal year janmdin se janmdin tak chalta hai, 1 January se nahi — ` +
         `${hadBirthday ? "aapka is saal ka janmdin nikal chuka hai" : "aapka is saal ka janmdin abhi aaya nahi"}, ` +

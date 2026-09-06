@@ -58,14 +58,21 @@ function Home() {
           Sidereal Vedic birth chart with real astronomical calculations — Lagna, grahas, nakshatras,
           divisional charts, Vimshottari dasha, yogas, doshas and traditional remedies.
         </p>
-        <div className="mt-4">
+        <div className="mt-4 flex flex-wrap justify-center gap-5">
           <Link
             to="/matching"
             className="text-sm text-primary underline-offset-4 hover:underline"
           >
             Kundli Milan — 36 guna matching →
           </Link>
+          <Link
+            to="/numerology"
+            className="text-sm text-primary underline-offset-4 hover:underline"
+          >
+            Numerology — Ank Jyotish →
+          </Link>
         </div>
+
       </header>
 
       {!kundli && (

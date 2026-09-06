@@ -8,7 +8,6 @@ import {
   type NumerologyReport,
 } from "@/lib/astro/numerology";
 import type { Kundli } from "@/lib/astro/kundli";
-import { PLANETS } from "@/lib/astro/data";
 
 function Card({ e }: { e: Explained }) {
   return (
@@ -157,7 +156,6 @@ function kundliLinks(r: NumerologyReport, k: Kundli): string[] {
     );
   }
   void asc;
-  void PLANETS;
   return out;
 }
 
