@@ -51,7 +51,7 @@ export function BirthForm({
     if (!q) return [];
     return CITIES.filter(
       (c) => c.name.toLowerCase().includes(q) || c.state.toLowerCase().includes(q),
-    ).slice(0, 7);
+    ).slice(0, 10);
   }, [query]);
 
   const submit = () => {
