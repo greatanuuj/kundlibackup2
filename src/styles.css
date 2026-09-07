@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * KUNDLI ANALYZER PRO — Vedic design system.
- * Midnight indigo parchment with temple-gold and saffron accents.
+ * KUNDLI ANALYZER PRO — Premium bright astrology design system.
+ * Warm ivory backgrounds, rich purple/violet accents, tasteful gold highlights.
  * All colours are oklch semantic tokens. Never hardcode colours in components.
  */
 
@@ -61,66 +61,93 @@
 }
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0.625rem;
 
-  --background: oklch(0.16 0.035 275);
-  --foreground: oklch(0.95 0.015 85);
-  --card: oklch(0.21 0.04 277);
-  --card-foreground: oklch(0.95 0.015 85);
-  --popover: oklch(0.19 0.038 277);
-  --popover-foreground: oklch(0.95 0.015 85);
+  /* Bright ivory / off-white base */
+  --background: oklch(0.97 0.012 75);
+  --foreground: oklch(0.22 0.03 285);
 
-  --primary: oklch(0.79 0.14 84);
-  --primary-foreground: oklch(0.19 0.04 277);
-  --secondary: oklch(0.28 0.05 280);
-  --secondary-foreground: oklch(0.94 0.015 85);
-  --muted: oklch(0.26 0.04 279);
-  --muted-foreground: oklch(0.72 0.03 85);
-  --accent: oklch(0.63 0.19 42);
-  --accent-foreground: oklch(0.98 0.01 85);
-  --destructive: oklch(0.58 0.21 22);
-  --destructive-foreground: oklch(0.98 0.01 85);
+  /* Cards: warm cream */
+  --card: oklch(0.99 0.008 75);
+  --card-foreground: oklch(0.22 0.03 285);
+  --popover: oklch(0.99 0.008 75);
+  --popover-foreground: oklch(0.22 0.03 285);
 
-  --gold: oklch(0.82 0.15 86);
-  --gold-foreground: oklch(0.18 0.04 277);
-  --saffron: oklch(0.71 0.18 55);
-  --success: oklch(0.72 0.15 155);
-  --warning: oklch(0.79 0.16 75);
+  /* Primary: rich royal purple */
+  --primary: oklch(0.45 0.18 285);
+  --primary-foreground: oklch(0.98 0.005 75);
 
-  --border: oklch(0.34 0.045 280);
-  --input: oklch(0.3 0.045 280);
-  --ring: oklch(0.79 0.14 84);
+  /* Secondary: soft lavender */
+  --secondary: oklch(0.93 0.025 285);
+  --secondary-foreground: oklch(0.30 0.05 285);
 
-  --chart-1: oklch(0.79 0.14 84);
-  --chart-2: oklch(0.68 0.16 45);
-  --chart-3: oklch(0.7 0.13 200);
-  --chart-4: oklch(0.72 0.15 155);
-  --chart-5: oklch(0.66 0.17 330);
+  /* Muted: warm beige */
+  --muted: oklch(0.95 0.015 75);
+  --muted-foreground: oklch(0.50 0.03 285);
 
-  --sidebar: oklch(0.19 0.038 277);
-  --sidebar-foreground: oklch(0.93 0.015 85);
-  --sidebar-primary: oklch(0.79 0.14 84);
-  --sidebar-primary-foreground: oklch(0.18 0.04 277);
-  --sidebar-accent: oklch(0.27 0.045 280);
-  --sidebar-accent-foreground: oklch(0.95 0.015 85);
-  --sidebar-border: oklch(0.32 0.045 280);
-  --sidebar-ring: oklch(0.79 0.14 84);
+  /* Accent: deep violet */
+  --accent: oklch(0.52 0.20 295);
+  --accent-foreground: oklch(0.98 0.005 75);
 
+  /* Destructive: warm red */
+  --destructive: oklch(0.55 0.22 22);
+  --destructive-foreground: oklch(0.98 0.005 75);
+
+  /* Gold for astrology accents */
+  --gold: oklch(0.74 0.15 80);
+  --gold-foreground: oklch(0.20 0.03 60);
+
+  /* Saffron for malefic indicators */
+  --saffron: oklch(0.68 0.17 55);
+
+  /* Success for benefic indicators */
+  --success: oklch(0.60 0.14 155);
+
+  /* Warning */
+  --warning: oklch(0.72 0.16 70);
+
+  /* Borders: soft warm */
+  --border: oklch(0.90 0.015 75);
+  --input: oklch(0.88 0.015 75);
+  --ring: oklch(0.45 0.18 285);
+
+  /* Chart colors */
+  --chart-1: oklch(0.45 0.18 285);
+  --chart-2: oklch(0.74 0.15 80);
+  --chart-3: oklch(0.60 0.14 155);
+  --chart-4: oklch(0.68 0.17 55);
+  --chart-5: oklch(0.52 0.20 295);
+
+  /* Sidebar */
+  --sidebar: oklch(0.96 0.015 75);
+  --sidebar-foreground: oklch(0.25 0.03 285);
+  --sidebar-primary: oklch(0.45 0.18 285);
+  --sidebar-primary-foreground: oklch(0.98 0.005 75);
+  --sidebar-accent: oklch(0.93 0.025 285);
+  --sidebar-accent-foreground: oklch(0.30 0.05 285);
+  --sidebar-border: oklch(0.90 0.015 75);
+  --sidebar-ring: oklch(0.45 0.18 285);
+
+  /* Subtle cosmic gradient for body background */
   --gradient-cosmic: radial-gradient(
-      circle at 20% 10%,
-      oklch(0.32 0.09 300 / 0.55),
-      transparent 55%
+      ellipse at 15% 5%,
+      oklch(0.94 0.03 285 / 0.5),
+      transparent 50%
     ),
-    radial-gradient(circle at 85% 20%, oklch(0.42 0.11 55 / 0.35), transparent 50%),
-    linear-gradient(160deg, oklch(0.14 0.035 275), oklch(0.19 0.05 285));
+    radial-gradient(ellipse at 85% 15%, oklch(0.93 0.04 75 / 0.35), transparent 45%),
+    linear-gradient(170deg, oklch(0.97 0.012 75), oklch(0.96 0.015 80));
+
+  /* Gold gradient for headings */
   --gradient-gold: linear-gradient(
     100deg,
-    oklch(0.86 0.13 92),
-    oklch(0.76 0.16 62),
-    oklch(0.86 0.13 92)
+    oklch(0.72 0.15 75),
+    oklch(0.62 0.17 55),
+    oklch(0.72 0.15 75)
   );
-  --shadow-temple: 0 24px 60px -24px oklch(0.05 0.03 280 / 0.85);
-  --shadow-glow: 0 0 0 1px oklch(0.79 0.14 84 / 0.35), 0 12px 40px -16px oklch(0.79 0.14 84 / 0.35);
+
+  /* Premium soft shadow */
+  --shadow-temple: 0 2px 8px -2px oklch(0.20 0.03 285 / 0.08), 0 8px 24px -8px oklch(0.20 0.03 285 / 0.06);
+  --shadow-glow: 0 0 0 1px oklch(0.74 0.15 80 / 0.25), 0 4px 16px -4px oklch(0.45 0.18 285 / 0.12);
 }
 
 @layer base {
@@ -154,11 +181,10 @@
 }
 
 @utility panel {
-  background-color: color-mix(in oklab, var(--card) 88%, transparent);
+  background-color: var(--card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   box-shadow: var(--shadow-temple);
-  backdrop-filter: blur(6px);
 }
 
 @utility gold-ring {
@@ -173,4 +199,11 @@
 
 @utility animate-slow-spin {
   animation: slow-spin 90s linear infinite;
+}
+
+/* Smooth transitions for interactive elements */
+@layer base {
+  button, a, [role="button"] {
+    transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
 }
