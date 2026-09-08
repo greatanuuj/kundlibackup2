@@ -1,64 +1,38 @@
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { NAKSHATRAS, PLANET_META, SIGNS } from "@/lib/astro/data";
 import { formatDegree, type Kundli, type PlanetPosition } from "@/lib/astro/kundli";
-import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-
-function StrengthBar({ value }: { value: number }) {
-  return (
-    <div className="flex items-center gap-2">
-      <Progress value={value} className="h-2 w-24" />
-      <span className="w-9 text-xs text-muted-foreground">{value}%</span>
-    </div>
-  );
-}
+import { StrengthIndicator, InfoRow } from "./ReportPrimitives";
 
 function PlanetDetail({ p }: { p: PlanetPosition }) {
   const m = PLANET_META[p.key];
   return (
-    <div className="mt-3 grid gap-4 rounded-md border border-border bg-secondary/40 p-4 text-sm sm:grid-cols-2">
-      <div className="space-y-2">
-        <p>
-          <span className="text-muted-foreground">Signifies: </span>
-          {m.signifies}
-        </p>
-        <p>
-          <span className="text-muted-foreground">Body parts: </span>
-          {m.body}
-        </p>
-        <p>
-          <span className="text-muted-foreground">Career leaning: </span>
-          {m.career}
-        </p>
-        <p>
-          <span className="text-muted-foreground">Nature: </span>
-          {m.nature} · Deity: {m.deity}
-        </p>
+    <div className="mt-3 grid gap-4 rounded-lg border border-border/50 bg-secondary/15 p-4 sm:grid-cols-2">
+      <div className="space-y-1">
+        <h5 className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary/70">Significations</h5>
+        <InfoRow label="Signifies" value={m.signifies} />
+        <InfoRow label="Body parts" value={m.body} />
+        <InfoRow label="Career" value={m.career} />
+        <InfoRow label="Nature" value={m.nature} />
+        <InfoRow label="Deity" value={m.deity} />
       </div>
-      <div className="space-y-2">
-        <p>
-          <span className="text-muted-foreground">Why this strength: </span>
-          {p.dignity}
-          {[1, 4, 7, 10].includes(p.house)
-            ? ", kendra placement adds power"
-            : [6, 8, 12].includes(p.house)
-              ? ", dusthana placement reduces ease of results"
-              : ""}
-          {p.retrograde ? ", retrograde intensifies inner effect" : ""}
-          {p.combust ? ", combust near the Sun weakens outer expression" : ""}.
-        </p>
-        <p>
-          <span className="text-muted-foreground">Gemstone: </span>
-          {m.gem}
-        </p>
-        <p>
-          <span className="text-muted-foreground">Mantra: </span>
-          <span className="font-devanagari">{m.mantra}</span>
-        </p>
-        <p>
-          <span className="text-muted-foreground">Fast / charity: </span>
-          {m.day} · {m.charity} · {m.rudraksha} Rudraksha
-        </p>
+      <div className="space-y-1">
+        <h5 className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary/70">Strength & Remedies</h5>
+        <InfoRow label="Dignity" value={p.dignity} />
+        <InfoRow
+          label="Why"
+          value={
+            `${p.dignity}${
+              [1, 4, 7, 10].includes(p.house) ? ", kendra adds power" : [6, 8, 12].includes(p.house) ? ", dusthana reduces ease" : ""
+            }${p.retrograde ? ", retrograde intensifies" : ""}${p.combust ? ", combust weakens" : ""}.`
+          }
+        />
+        <InfoRow label="Gemstone" value={m.gem} />
+        <InfoRow label="Mantra" value={<span className="font-devanagari">{m.mantra}</span>} />
+        <InfoRow label="Beej" value={<span className="font-devanagari">{m.beej}</span>} />
+        <InfoRow label="Day / Charity" value={`${m.day} · ${m.charity}`} />
+        <InfoRow label="Rudraksha" value={m.rudraksha} />
       </div>
     </div>
   );
@@ -68,13 +42,13 @@ export function PlanetsPanel({ k }: { k: Kundli }) {
   const [open, setOpen] = useState<string | null>(null);
   return (
     <section className="panel overflow-hidden">
-      <div className="border-b border-border p-5">
-        <h3 className="text-lg font-semibold text-primary">Graha Positions & Strength</h3>
-        <p className="text-xs text-muted-foreground">
-          Sidereal (Lahiri ayanamsa {formatDegree(k.ayanamsa)}). Click a planet for full analysis.
+      <div className="border-b border-border/50 p-5">
+        <h3 className="font-display text-xl font-semibold text-primary">Graha Positions & Strength</h3>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Sidereal (Lahiri ayanamsa {formatDegree(k.ayanamsa)}). Tap a planet for full analysis.
         </p>
       </div>
-      <div className="divide-y divide-border">
+      <div className="divide-y divide-border/40">
         {k.planets.map((p) => {
           const m = PLANET_META[p.key];
           const isOpen = open === p.key;
@@ -84,22 +58,38 @@ export function PlanetsPanel({ k }: { k: Kundli }) {
                 className="flex w-full flex-wrap items-center gap-x-4 gap-y-2 text-left"
                 onClick={() => setOpen(isOpen ? null : p.key)}
               >
-                <span className="w-32 font-display text-base font-semibold text-foreground">
-                  {p.key} <span className="font-devanagari text-muted-foreground">{m.hi}</span>
+                <span className="flex items-center gap-2">
+                  <span
+                    className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-bold ${
+                      m.nature === "Benefic"
+                        ? "bg-success/15 text-success"
+                        : m.nature === "Malefic"
+                          ? "bg-saffron/15 text-saffron"
+                          : "bg-primary/10 text-primary"
+                    }`}
+                  >
+                    {m.short}
+                  </span>
+                  <span className="font-display text-base font-semibold text-foreground">
+                    {p.key}
+                  </span>
+                  <span className="font-devanagari text-sm text-muted-foreground">{m.hi}</span>
                 </span>
-                <span className="w-40 text-sm">
+                <span className="text-sm text-foreground/80">
                   {SIGNS[p.sign].en} {formatDegree(p.degreeInSign)}
                 </span>
-                <Badge variant="outline">House {p.house}</Badge>
-                <span className="w-44 text-xs text-muted-foreground">
-                  {NAKSHATRAS[p.nakshatra].en} · pada {p.pada}
+                <Badge variant="outline">H{p.house}</Badge>
+                <span className="hidden text-xs text-muted-foreground sm:inline">
+                  {NAKSHATRAS[p.nakshatra].en} · p{p.pada}
                 </span>
-                <span className="w-40 text-xs text-muted-foreground">{p.dignity}</span>
-                {p.retrograde && <Badge variant="secondary">Retrograde</Badge>}
+                {p.retrograde && <Badge variant="secondary">Retro</Badge>}
                 {p.combust && <Badge variant="secondary">Combust</Badge>}
                 <span className="ml-auto">
-                  <StrengthBar value={p.strength} />
+                  <StrengthIndicator value={p.strength} />
                 </span>
+                <ChevronDown
+                  className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`}
+                />
               </button>
               {isOpen && <PlanetDetail p={p} />}
             </div>
