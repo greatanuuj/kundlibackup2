@@ -1,5 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
+import { useUser } from "@clerk/react";
+import { AccountBar } from "@/components/auth/AccountBar";
+import { SavedProfiles } from "@/components/auth/SavedProfiles";
+import { saveProfile, type SavedProfile } from "@/lib/savedProfiles";
 import { BirthForm } from "@/components/kundli/BirthForm";
 import { ChartDiagram } from "@/components/kundli/ChartDiagram";
 import { SummaryCards } from "@/components/kundli/SummaryCards";
@@ -45,13 +49,26 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { isSignedIn, user } = useUser();
   const [input, setInput] = useState<BirthInput | null>(null);
   const [house, setHouse] = useState<number | null>(null);
+  const [savedNotice, setSavedNotice] = useState<string | null>(null);
+  const [profilesRefreshKey, setProfilesRefreshKey] = useState(0);
   const kundli: Kundli | null = useMemo(() => (input ? computeKundli(input) : null), [input]);
+
+  const openSavedProfile = (profile: SavedProfile) => {
+    setInput(profile.input);
+    setHouse(null);
+    setSavedNotice(null);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <main className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:py-14">
       <header className="text-center">
+        <div className="mb-8 flex justify-end">
+          <AccountBar />
+        </div>
         <p className="font-devanagari text-sm tracking-[0.3em] text-primary/80">॥ श्री गणेशाय नमः ॥</p>
         <h1 className="mt-3 font-display text-4xl font-bold sm:text-5xl">
           <span className="text-gold-gradient">Kundli Analyzer Pro</span>
@@ -81,6 +98,9 @@ function Home() {
       {!kundli && (
         <div className="mt-10">
           <BirthForm onSubmit={setInput} />
+          <div className="mt-6">
+            <SavedProfiles onOpen={openSavedProfile} refreshKey={profilesRefreshKey} />
+          </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {[
               { icon: "🪐", t: "Authentic Jyotish", d: "Lahiri ayanamsa, whole-sign bhavas, classical dignities and Vimshottari timing." },
@@ -108,6 +128,18 @@ function Home() {
               </p>
             </div>
             <div className="flex gap-2">
+               {isSignedIn && user && (
+                 <Button
+                   variant="outline"
+                   onClick={() => {
+                     saveProfile(user.id, kundli.input);
+                     setProfilesRefreshKey((key) => key + 1);
+                     setSavedNotice("Kundli aapke account mein save ho gayi.");
+                   }}
+                 >
+                   Save this Kundli
+                 </Button>
+               )}
               <Button variant="outline" onClick={() => window.print()}>
                 <Printer className="mr-1.5 h-4 w-4" />
                 Print / PDF
@@ -117,6 +149,11 @@ function Home() {
                 New Kundli
               </Button>
             </div>
+             {savedNotice && (
+               <p className="basis-full text-sm text-emerald-700" role="status">
+                 {savedNotice}
+               </p>
+             )}
           </div>
 
           <SummaryCards k={kundli} />

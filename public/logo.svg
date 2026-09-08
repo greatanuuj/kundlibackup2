@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <title id="title">Kundli Analyzer Pro</title>
+  <desc id="desc">A gold and purple astrological sun mark</desc>
+  <circle cx="48" cy="48" r="35" fill="#f8f0df" stroke="#5b3bb5" stroke-width="4"/>
+  <circle cx="48" cy="48" r="21" fill="none" stroke="#c98a22" stroke-width="3"/>
+  <path d="M48 14v10M48 72v10M14 48h10M72 48h10M24 24l7 7M65 65l7 7M72 24l-7 7M31 65l-7 7" stroke="#c98a22" stroke-width="4" stroke-linecap="round"/>
+  <path d="M48 32l4.8 10.4L64 44l-8.2 7.8L58 63l-10-5.7L38 63l2.2-11.2L32 44l11.2-1.6z" fill="#5b3bb5"/>
+</svg>

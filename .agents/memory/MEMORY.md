@@ -1,0 +1,1 @@
+- [Clerk routing](clerk-tanstack.md) — hash-routed Clerk screens work in this TanStack Start app; path routing needs verified wildcard callback routes.

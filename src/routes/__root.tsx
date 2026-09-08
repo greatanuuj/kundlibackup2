@@ -1,4 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ClerkProvider } from "@clerk/react";
+import { publishableKeyFromHost } from "@clerk/react/internal";
 import {
   Outlet,
   Link,
@@ -129,11 +131,56 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 
   return (
-    <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-    </QueryClientProvider>
+    <ClerkProvider
+      publishableKey={
+        typeof window === "undefined"
+          ? import.meta.env["VITE_CLERK_PUBLISHABLE_KEY"]
+          : publishableKeyFromHost(
+              window.location.hostname,
+              import.meta.env["VITE_CLERK_PUBLISHABLE_KEY"],
+            )
+      }
+      appearance={{
+        options: {
+          logoPlacement: "inside",
+          logoLinkUrl: basePath || "/",
+          logoImageUrl:
+            typeof window === "undefined"
+              ? `${basePath || ""}/logo.svg`
+              : `${window.location.origin}${basePath}/logo.svg`,
+        },
+        variables: {
+          colorPrimary: "oklch(0.45 0.18 285)",
+          colorBackground: "oklch(0.99 0.008 75)",
+          colorForeground: "oklch(0.22 0.03 285)",
+          fontFamily: "Karla, sans-serif",
+          borderRadius: "0.625rem",
+        },
+      }}
+      signInUrl="/sign-in"
+      signUpUrl="/sign-up"
+      localization={{
+        signIn: {
+          start: {
+            title: "Welcome back",
+            subtitle: "Sign in to save and open your Kundli",
+          },
+        },
+        signUp: {
+          start: {
+            title: "Create your Kundli account",
+            subtitle: "Save your birth details for next time",
+          },
+        },
+      }}
+    >
+      <QueryClientProvider client={queryClient}>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </QueryClientProvider>
+    </ClerkProvider>
   );
 }
