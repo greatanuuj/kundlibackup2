@@ -3,8 +3,8 @@ name: Clerk auth in this TanStack Start app
 description: Non-obvious auth routing behavior discovered while integrating Clerk.
 ---
 
-Clerk's path-routed SignIn/SignUp components rendered blank in this TanStack Start preview, while hash routing rendered the branded auth card correctly. Keep this behavior in mind before revisiting OAuth callback routing.
+Clerk's path-routed SignIn/SignUp components need matching TanStack splat routes in this app. With those wildcard routes present, the branded auth card and callback URLs render correctly.
 
-**Why:** The app's TanStack file routes do not currently include Clerk's optional wildcard callback paths, so the simpler hash flow is the working local behavior.
+**Why:** Without wildcard callback routes, the sign-in page rendered blank or produced route collisions; the explicit splat routes remove that ambiguity.
 
-**How to apply:** If switching back to path routing, add and verify wildcard callback routes for both sign-in and sign-up in the TanStack route tree before removing hash routing.
+**How to apply:** Keep `/sign-in/$` and `/sign-up/$` routes alongside the Clerk components, and verify both the base and `/sso-callback` paths after auth changes.

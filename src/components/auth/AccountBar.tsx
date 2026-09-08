@@ -1,5 +1,4 @@
 import { useClerk, useUser } from "@clerk/react";
-import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 
 export function AccountBar() {
@@ -14,10 +13,10 @@ export function AccountBar() {
     return (
       <div className="flex items-center gap-2">
         <Button variant="ghost" size="sm" asChild>
-          <Link to="/sign-in">Log in</Link>
+          <a href="/sign-in">Log in</a>
         </Button>
         <Button size="sm" asChild>
-          <Link to="/sign-up">Create account</Link>
+          <a href="/sign-up">Create account</a>
         </Button>
       </div>
     );
