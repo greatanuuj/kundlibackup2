@@ -13,6 +13,7 @@ import { DivisionalPanel } from "@/components/kundli/DivisionalPanel";
 import { TransitPanel } from "@/components/kundli/TransitPanel";
 import { LalKitabPanel } from "@/components/kundli/LalKitabPanel";
 import { NumerologyPanel } from "@/components/kundli/NumerologyPanel";
+import { PrintView } from "@/components/kundli/PrintView";
 
 import { HouseDetail } from "@/components/kundli/HouseDetail";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -252,6 +253,8 @@ function Home() {
       <footer className="mt-14 text-center text-xs text-muted-foreground">
         For self-reflection and study. Not a substitute for medical, legal or financial advice.
       </footer>
+
+      {kundli && <PrintView k={kundli} />}
     </main>
   );
 }
