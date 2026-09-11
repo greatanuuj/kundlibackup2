@@ -393,7 +393,6 @@ export const CITIES: City[] = [
   { name: "Ayodhya", state: "Uttar Pradesh", lat: 26.792, lon: 82.199, tz: 5.5 },
   { name: "Akbarpur", state: "Uttar Pradesh", lat: 26.43, lon: 82.53, tz: 5.5 },
   { name: "Amethi", state: "Uttar Pradesh", lat: 26.156, lon: 81.814, tz: 5.5 },
-  { name: "Firozabad", state: "Uttar Pradesh", lat: 27.1593, lon: 78.3918, tz: 5.5 },
   { name: "Fatehpur", state: "Uttar Pradesh", lat: 25.93, lon: 80.8, tz: 5.5 },
   { name: "Banda", state: "Uttar Pradesh", lat: 25.477, lon: 80.335, tz: 5.5 },
   { name: "Hamirpur", state: "Uttar Pradesh", lat: 25.95, lon: 80.15, tz: 5.5 },
