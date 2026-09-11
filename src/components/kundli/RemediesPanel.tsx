@@ -1,4 +1,4 @@
-import { Sparkles, Gem, Calendar, HandHeart, CircleDot, Palette, Flame } from "lucide-react";
+import { Sparkles, Gem, Calendar, HandHeart, Bead, Palette, Flame } from "lucide-react";
 import { PLANET_META, SIGNS } from "@/lib/astro/data";
 import type { Kundli } from "@/lib/astro/kundli";
 import { Badge } from "@/components/ui/badge";
@@ -43,7 +43,7 @@ function RemedyCard({ p, priority }: { p: Kundli["planets"][number]; priority: n
         <div className="space-y-1">
           <h5 className="mb-2 text-xs font-semibold uppercase tracking-wider text-primary/70">Material Remedies</h5>
           <RemedyRow icon={<Gem className="h-3 w-3" />} label="Gemstone" value={`${m.gem} (${m.metal})`} />
-          <RemedyRow icon={<CircleDot className="h-3 w-3" />} label="Rudraksha" value={m.rudraksha} />
+          <RemedyRow icon={<Bead className="h-3 w-3" />} label="Rudraksha" value={m.rudraksha} />
           <RemedyRow icon={<Palette className="h-3 w-3" />} label="Colour" value={m.colour} />
           <RemedyRow icon={<Sparkles className="h-3 w-3" />} label="Deity" value={m.deity} />
         </div>
