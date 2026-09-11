@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { NumerologyPanel } from "@/components/kundli/NumerologyPanel";
 import { numerologyMatch, type NumerologyInput } from "@/lib/astro/numerology";
-import { ArrowLeft, Sparkles, Users } from "lucide-react";
 
 export const Route = createFileRoute("/numerology")({
   head: () => ({
@@ -41,7 +40,7 @@ function PersonForm({
   heading: string;
 }) {
   return (
-    <div className="panel p-5 sm:p-6">
+    <div className="panel p-5">
       <h3 className="font-display text-lg font-semibold text-primary">{heading}</h3>
       <div className="mt-4 grid gap-4 sm:grid-cols-3">
         <div className="grid gap-2">
@@ -63,7 +62,7 @@ function PersonForm({
         <div className="grid gap-2">
           <Label>Ling</Label>
           <select
-            className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
+            className="h-10 rounded-md border border-input bg-background px-3 text-sm"
             value={value.gender}
             onChange={(e) => onChange({ ...value, gender: e.target.value })}
           >
@@ -102,9 +101,8 @@ function NumerologyPage() {
           personal year — har nateeje ke saath uski poori wajah.
         </p>
         <div className="mt-4">
-          <Link to="/" className="inline-flex items-center gap-1 text-sm text-primary underline-offset-4 hover:underline">
-            <ArrowLeft className="h-3.5 w-3.5" />
-            Poori Vedic Kundli banayein
+          <Link to="/" className="text-sm text-primary underline-offset-4 hover:underline">
+            ← Poori Vedic Kundli banayein
           </Link>
         </div>
       </header>
@@ -119,7 +117,6 @@ function NumerologyPage() {
             }}
             disabled={!a.date}
           >
-            <Sparkles className="mr-1.5 h-4 w-4" />
             Numerology report banayein
           </Button>
           <Button
@@ -128,7 +125,6 @@ function NumerologyPage() {
               setShowMatch((s) => !s);
             }}
           >
-            <Users className="mr-1.5 h-4 w-4" />
             {showMatch ? "Ank milan band karein" : "Ank milan (do logon ka)"}
           </Button>
         </div>
@@ -137,21 +133,15 @@ function NumerologyPage() {
           <>
             <PersonForm value={b} onChange={setB} heading="Doosre vyakti ki jaankari" />
             {match && (
-              <section className="panel p-5 sm:p-6">
+              <section className="panel p-5">
                 <div className="flex items-baseline justify-between">
                   <h3 className="font-display text-xl font-semibold text-primary">Ank Milan</h3>
                   <span className="font-display text-3xl text-gold-gradient">{match.total}%</span>
                 </div>
-                <div className="mt-4 h-3 w-full overflow-hidden rounded-full bg-secondary">
-                  <div
-                    className={`h-full rounded-full transition-all duration-500 ${match.total >= 75 ? "bg-success" : match.total >= 50 ? "bg-gold" : "bg-destructive"}`}
-                    style={{ width: `${match.total}%` }}
-                  />
-                </div>
                 <ul className="mt-4 grid gap-2 text-sm">
                   {match.lines.map((l, i) => (
-                    <li key={i} className="flex gap-2 leading-relaxed text-foreground/80">
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
+                    <li key={i} className="flex gap-2 leading-relaxed">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                       <span>{l}</span>
                     </li>
                   ))}

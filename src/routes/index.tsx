@@ -24,7 +24,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { computeKundli, type BirthInput, type Kundli } from "@/lib/astro/kundli";
 import { NAKSHATRAS, SIGNS } from "@/lib/astro/data";
-import { Printer, RotateCcw, Heart, Hash } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -77,22 +76,21 @@ function Home() {
           Sidereal Vedic birth chart with real astronomical calculations — Lagna, grahas, nakshatras,
           divisional charts, Vimshottari dasha, yogas, doshas and traditional remedies.
         </p>
-        <div className="mt-5 flex flex-wrap justify-center gap-3">
+        <div className="mt-4 flex flex-wrap justify-center gap-5">
           <Link
             to="/matching"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border/50 bg-card px-4 py-2 text-sm font-medium text-primary transition hover:border-primary/40 hover:bg-secondary/30"
+            className="text-sm text-primary underline-offset-4 hover:underline"
           >
-            <Heart className="h-4 w-4" />
-            Kundli Milan — 36 guna matching
+            Kundli Milan — 36 guna matching →
           </Link>
           <Link
             to="/numerology"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border/50 bg-card px-4 py-2 text-sm font-medium text-primary transition hover:border-primary/40 hover:bg-secondary/30"
+            className="text-sm text-primary underline-offset-4 hover:underline"
           >
-            <Hash className="h-4 w-4" />
-            Numerology — Ank Jyotish
+            Numerology — Ank Jyotish →
           </Link>
         </div>
+
       </header>
 
       {!kundli && (
@@ -103,14 +101,13 @@ function Home() {
           </div>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {[
-              { icon: "🪐", t: "Authentic Jyotish", d: "Lahiri ayanamsa, whole-sign bhavas, classical dignities and Vimshottari timing." },
-              { icon: "📖", t: "Explained, not guessed", d: "Every result shows the logic — placement, lordship and strength behind it." },
-              { icon: "📿", t: "Complete remedies", d: "Mantra, gemstone, fasting day, charity, rudraksha and daily sadhana per graha." },
+              { t: "Authentic Jyotish", d: "Lahiri ayanamsa, whole-sign bhavas, classical dignities and Vimshottari timing." },
+              { t: "Explained, not guessed", d: "Every result shows the logic — placement, lordship and strength behind it." },
+              { t: "Complete remedies", d: "Mantra, gemstone, fasting day, charity, rudraksha and daily sadhana per graha." },
             ].map((f) => (
               <div key={f.t} className="panel p-5">
-                <span className="text-2xl">{f.icon}</span>
-                <h2 className="mt-2 font-display text-lg font-semibold text-primary">{f.t}</h2>
-                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{f.d}</p>
+                <h2 className="font-display text-lg font-semibold text-primary">{f.t}</h2>
+                <p className="mt-1 text-sm text-muted-foreground">{f.d}</p>
               </div>
             ))}
           </div>
@@ -119,10 +116,10 @@ function Home() {
 
       {kundli && (
         <div className="mt-10 space-y-8">
-          <div className="panel flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6">
+          <div className="panel flex flex-wrap items-center justify-between gap-4 p-5">
             <div>
-              <h2 className="font-display text-2xl font-semibold text-primary">{kundli.input.name}</h2>
-              <p className="mt-1 text-sm text-muted-foreground">
+              <h2 className="font-display text-2xl font-semibold">{kundli.input.name}</h2>
+              <p className="text-sm text-muted-foreground">
                 {kundli.input.date} · {kundli.input.time} · {kundli.input.place} ·{" "}
                 {kundli.panchang.weekday} ({kundli.panchang.weekdayHi})
               </p>
@@ -141,11 +138,9 @@ function Home() {
                  </Button>
                )}
               <Button variant="outline" onClick={() => window.print()}>
-                <Printer className="mr-1.5 h-4 w-4" />
                 Print / PDF
               </Button>
               <Button variant="secondary" onClick={() => setInput(null)}>
-                <RotateCcw className="mr-1.5 h-4 w-4" />
                 New Kundli
               </Button>
             </div>
@@ -196,44 +191,38 @@ function Home() {
                 {house ? (
                   <HouseDetail k={kundli} house={house} />
                 ) : (
-                  <div className="panel p-5 sm:p-6">
-                    <h3 className="font-display text-xl font-semibold text-primary">Chart Summary</h3>
+                  <div className="panel p-5">
+                    <h3 className="text-lg font-semibold text-primary">Chart summary</h3>
                     <p className="mt-1 text-xs text-muted-foreground">
                       Chart mein kisi bhi ghar par click karein — us ghar ka kaam, uske grah, drishti,
                       dasha aur baaki tables se connection sab detail mein khulega.
                     </p>
-                    <div className="mt-4 rounded-lg border border-border/40 bg-secondary/15 p-4">
-                      <ul className="grid gap-2 text-sm">
-                        <li className="flex justify-between gap-3 border-b border-border/40 pb-1.5">
-                          <span className="text-muted-foreground">Lagna</span>
-                          <span className="font-medium text-foreground/90">
-                            {SIGNS[kundli.ascendant.sign].en} ({SIGNS[kundli.ascendant.sign].hi}),{" "}
-                            {SIGNS[kundli.ascendant.sign].element} sign ruled by{" "}
-                            {SIGNS[kundli.ascendant.sign].lord}
-                          </span>
-                        </li>
-                        <li className="flex justify-between gap-3 border-b border-border/40 pb-1.5">
-                          <span className="text-muted-foreground">Janma Nakshatra</span>
-                          <span className="font-medium text-foreground/90">
-                            {NAKSHATRAS[kundli.planets[1].nakshatra].en} — deity{" "}
-                            {NAKSHATRAS[kundli.planets[1].nakshatra].deity}, lord{" "}
-                            {NAKSHATRAS[kundli.planets[1].nakshatra].lord}
-                          </span>
-                        </li>
-                        <li className="flex justify-between gap-3 border-b border-border/40 pb-1.5">
-                          <span className="text-muted-foreground">Strongest graha</span>
-                          <span className="font-medium text-success">{[...kundli.planets].sort((a, b) => b.strength - a.strength)[0].key}</span>
-                        </li>
-                        <li className="flex justify-between gap-3 border-b border-border/40 pb-1.5">
-                          <span className="text-muted-foreground">Weakest graha</span>
-                          <span className="font-medium text-destructive">{[...kundli.planets].sort((a, b) => a.strength - b.strength)[0].key}</span>
-                        </li>
-                        <li className="flex justify-between gap-3">
-                          <span className="text-muted-foreground">Doshas present</span>
-                          <span className="font-medium text-foreground/90">{kundli.doshas.filter((d) => d.present).map((d) => d.name).join(", ") || "none"}</span>
-                        </li>
-                      </ul>
-                    </div>
+                    <ul className="mt-3 space-y-2 text-sm">
+                      <li>
+                        <span className="text-muted-foreground">Lagna: </span>
+                        {SIGNS[kundli.ascendant.sign].en} ({SIGNS[kundli.ascendant.sign].hi}),{" "}
+                        {SIGNS[kundli.ascendant.sign].element} sign ruled by{" "}
+                        {SIGNS[kundli.ascendant.sign].lord}
+                      </li>
+                      <li>
+                        <span className="text-muted-foreground">Janma Nakshatra: </span>
+                        {NAKSHATRAS[kundli.planets[1].nakshatra].en} — deity{" "}
+                        {NAKSHATRAS[kundli.planets[1].nakshatra].deity}, lord{" "}
+                        {NAKSHATRAS[kundli.planets[1].nakshatra].lord}
+                      </li>
+                      <li>
+                        <span className="text-muted-foreground">Strongest graha: </span>
+                        {[...kundli.planets].sort((a, b) => b.strength - a.strength)[0].key}
+                      </li>
+                      <li>
+                        <span className="text-muted-foreground">Weakest graha: </span>
+                        {[...kundli.planets].sort((a, b) => a.strength - b.strength)[0].key}
+                      </li>
+                      <li>
+                        <span className="text-muted-foreground">Doshas present: </span>
+                        {kundli.doshas.filter((d) => d.present).map((d) => d.name).join(", ") || "none"}
+                      </li>
+                    </ul>
                   </div>
                 )}
               </div>
@@ -275,10 +264,9 @@ function Home() {
               <RemediesPanel k={kundli} />
             </TabsContent>
             <TabsContent value="panchang" className="mt-6">
-              <section className="panel p-5 sm:p-6">
-                <h3 className="font-display text-xl font-semibold text-primary">Birth Panchang</h3>
-                <p className="mt-1 text-xs text-muted-foreground">Five limbs of Vedic almanac at the moment of birth.</p>
-                <dl className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <section className="panel p-5">
+                <h3 className="text-lg font-semibold text-primary">Birth Panchang</h3>
+                <dl className="mt-4 grid gap-4 sm:grid-cols-3">
                   {[
                     ["Vaar (weekday)", `${kundli.panchang.weekday} · ${kundli.panchang.weekdayHi}`],
                     ["Tithi", `${kundli.panchang.tithi} (${kundli.panchang.paksha})`],
@@ -287,9 +275,9 @@ function Home() {
                     ["Karana", kundli.panchang.karana],
                     ["Ayanamsa (Lahiri)", `${kundli.ayanamsa.toFixed(4)}°`],
                   ].map(([k2, v]) => (
-                    <div key={k2} className="rounded-lg border border-border/50 bg-secondary/15 p-4">
+                    <div key={k2} className="rounded-md border border-border p-4">
                       <dt className="text-xs uppercase tracking-widest text-muted-foreground">{k2}</dt>
-                      <dd className="mt-1 font-display text-lg text-foreground">{v}</dd>
+                      <dd className="mt-1 font-display text-lg">{v}</dd>
                     </div>
                   ))}
                 </dl>

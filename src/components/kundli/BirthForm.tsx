@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CITIES, type City } from "@/lib/astro/data";
 import type { BirthInput } from "@/lib/astro/kundli";
-import { Sparkles, MapPin, User } from "lucide-react";
 
 const EXAMPLES: BirthInput[] = [
   {
@@ -80,10 +79,7 @@ export function BirthForm({
 
   return (
     <div className="panel p-6 sm:p-8">
-      <div className="flex items-center gap-2">
-        <User className="h-5 w-5 text-primary" />
-        <h2 className="font-display text-2xl font-semibold text-primary">{heading}</h2>
-      </div>
+      <h2 className="text-2xl font-semibold text-primary">{heading}</h2>
       <p className="mt-1 text-sm text-muted-foreground">
         जन्म विवरण भरें — accurate time gives an accurate Lagna and Dasha.
       </p>
@@ -115,10 +111,7 @@ export function BirthForm({
           <Input id="time" type="time" value={time} onChange={(e) => setTime(e.target.value)} />
         </div>
         <div className="relative space-y-2 sm:col-span-2">
-          <Label htmlFor="place" className="flex items-center gap-1.5">
-            <MapPin className="h-3.5 w-3.5" />
-            Birth place
-          </Label>
+          <Label htmlFor="place">Birth place</Label>
           <Input
             id="place"
             value={query}
@@ -132,12 +125,12 @@ export function BirthForm({
             placeholder="Start typing a city — Varanasi, Mumbai, Kathmandu…"
           />
           {open && matches.length > 0 && (
-            <ul className="absolute z-20 mt-1 w-full overflow-hidden rounded-lg border border-border bg-popover shadow-lg">
+            <ul className="absolute z-20 mt-1 w-full overflow-hidden rounded-md border border-border bg-popover shadow-lg">
               {matches.map((c) => (
                 <li key={`${c.name}-${c.lon}`}>
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between px-3 py-2 text-left text-sm transition hover:bg-secondary"
+                    className="flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-secondary"
                     onClick={() => {
                       setCity(c);
                       setQuery(`${c.name}, ${c.state}`);
@@ -159,15 +152,10 @@ export function BirthForm({
         </div>
       </div>
 
-      {error && (
-        <p className="mt-4 rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm text-destructive">
-          {error}
-        </p>
-      )}
+      {error && <p className="mt-4 text-sm text-destructive">{error}</p>}
 
       <div className="mt-6 flex flex-wrap items-center gap-3">
         <Button onClick={submit} size="lg" className="font-semibold">
-          <Sparkles className="mr-1.5 h-4 w-4" />
           Generate Kundli
         </Button>
         {EXAMPLES.map((ex) => (
